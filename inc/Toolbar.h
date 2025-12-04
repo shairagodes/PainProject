@@ -12,6 +12,7 @@ class Toolbar : public bobcat::Group {
     bobcat::Image* rectangleButton;
     bobcat::Image* polygonButton;
     bobcat::Image* clearButton;
+    bobcat::Image* mouseButton;
 
     TOOL selectedTool;
     ACTION action; 
@@ -25,6 +26,8 @@ public:
 
     TOOL getSelectedTool() const;
     ACTION getAction() const;
+
+    ~Toolbar();
 };
 
 #endif

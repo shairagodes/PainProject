@@ -10,6 +10,7 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     rectangleButton = new Image(x, y + 200, 50, 50, "./assets/rectangle.png");
     polygonButton = new Image(x, y + 250, 50, 50, "./assets/polygon.png");
     clearButton = new Image(x, y + 300, 50, 50, "./assets/clear.png");
+    mouseButton = new Image(x, y + 350, 50, 50, "./assets/mouse.png");
 
     pencilButton->box(FL_BORDER_BOX);
     eraserButton->box(FL_BORDER_BOX);
@@ -18,8 +19,10 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     rectangleButton->box(FL_BORDER_BOX);
     polygonButton->box(FL_BORDER_BOX);
     clearButton->box(FL_BORDER_BOX);
+    mouseButton->box(FL_BORDER_BOX);
 
     selectedTool = PENCIL;
+    action = NONE;
 
     visualizeSelectedTool();
 
@@ -30,10 +33,12 @@ Toolbar::Toolbar(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(rectangleButton, Toolbar::onClick);
     ON_CLICK(polygonButton, Toolbar::onClick);
     ON_CLICK(clearButton, Toolbar::onClick);
+    ON_CLICK(mouseButton, Toolbar::onClick);
 }
 
 void Toolbar::onClick(Widget* sender) {
     deselectAllTools();
+    action = NONE;
 
     if (sender == pencilButton) {
         selectedTool = PENCIL;
@@ -53,8 +58,15 @@ void Toolbar::onClick(Widget* sender) {
     else if (sender == polygonButton) {
         selectedTool = POLYGON;
     }
+    else if (sender == mouseButton) {
+        selectedTool = MOUSE;
+    }
     else if (sender == clearButton) {
-        selectedTool = CLEAR;
+        action = CLEAR;
+    }
+
+    if (onChangeCb) {
+        onChangeCb(this);
     }
 
     visualizeSelectedTool();
@@ -80,8 +92,8 @@ void Toolbar::visualizeSelectedTool() {
     else if (selectedTool == POLYGON) {
         polygonButton->color(FL_WHITE);
     }
-    else if (selectedTool == CLEAR) {
-        clearButton->color(FL_WHITE);
+    else if (selectedTool == MOUSE) {
+        mouseButton->color(FL_WHITE);
     }
 }
 
@@ -92,9 +104,24 @@ void Toolbar::deselectAllTools() {
     triangleButton->color(FL_BACKGROUND_COLOR);
     rectangleButton->color(FL_BACKGROUND_COLOR);
     polygonButton->color(FL_BACKGROUND_COLOR);
-    clearButton->color(FL_BACKGROUND_COLOR);
+    mouseButton->color(FL_BACKGROUND_COLOR);
 }
 
 TOOL Toolbar::getSelectedTool() const {
     return selectedTool;
+}
+
+ACTION Toolbar::getAction() const {
+    return action;
+}
+
+Toolbar::~Toolbar() {
+    delete pencilButton;
+    delete eraserButton;
+    delete circleButton;
+    delete triangleButton;
+    delete rectangleButton;
+    delete polygonButton;
+    delete clearButton;
+    delete mouseButton;
 }

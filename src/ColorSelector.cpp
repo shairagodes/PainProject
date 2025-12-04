@@ -39,22 +39,28 @@ ColorSelector::ColorSelector(int x, int y, int w, int h) : Group(x, y, w, h) {
     ON_CLICK(violetButton, ColorSelector::onClick);
 }
 
-void ColorSelector::onClick(Widget *sender) {
+void ColorSelector::onClick(Widget* sender) {
     deselectAllColors();
 
     if (sender == redButton) {
         selectedColor = RED;
-    } else if (sender == orangeButton) {
+    }
+    else if (sender == orangeButton) {
         selectedColor = ORANGE;
-    } else if (sender == yellowButton) {
+    }
+    else if (sender == yellowButton) {
         selectedColor = YELLOW;
-    } else if (sender == greenButton) {
+    }
+    else if (sender == greenButton) {
         selectedColor = GREEN;
-    } else if (sender == blueButton) {
+    }
+    else if (sender == blueButton) {
         selectedColor = BLUE;
-    } else if (sender == indigoButton) {
+    }
+    else if (sender == indigoButton) {
         selectedColor = INDIGO;
-    } else if (sender == violetButton) {
+    }
+    else if (sender == violetButton) {
         selectedColor = VIOLET;
     }
 
@@ -65,17 +71,23 @@ void ColorSelector::onClick(Widget *sender) {
 void ColorSelector::visualizeSelectedColor() {
     if (selectedColor == RED) {
         redButton->label("@+5square");
-    } else if (selectedColor == ORANGE) {
+    }
+    else if (selectedColor == ORANGE) {
         orangeButton->label("@+5square");
-    } else if (selectedColor == YELLOW) {
+    }
+    else if (selectedColor == YELLOW) {
         yellowButton->label("@+5square");
-    } else if (selectedColor == GREEN) {
+    }
+    else if (selectedColor == GREEN) {
         greenButton->label("@+5square");
-    } else if (selectedColor == BLUE) {
+    }
+    else if (selectedColor == BLUE) {
         blueButton->label("@+5square");
-    } else if (selectedColor == INDIGO) {
+    }
+    else if (selectedColor == INDIGO) {
         indigoButton->label("@+5square");
-    } else if (selectedColor == VIOLET) {
+    }
+    else if (selectedColor == VIOLET) {
         violetButton->label("@+5square");
     }
 }
@@ -94,21 +106,27 @@ Color ColorSelector::getSelectedColor() const {
     Color color;
 
     if (selectedColor == RED) {
-        color = Color(255 / 255.0, 0 / 255.0, 0 / 255.0);
-    } else if (selectedColor == ORANGE) {
-        color = Color(255 / 255.0, 127 / 255.0, 0 / 255.0);
-    } else if (selectedColor == YELLOW) {
-        color = Color(255 / 255.0, 255 / 255.0, 0 / 255.0);
-    } else if (selectedColor == GREEN) {
-        color = Color(0 / 255.0, 255 / 255.0, 0 / 255.0);
-    } else if (selectedColor == BLUE) {
-        color = Color(0 / 255.0, 0 / 255.0, 255 / 255.0);
-    } else if (selectedColor == INDIGO) {
-        color = Color(75 / 255.0, 0 / 255.0, 130 / 255.0);
-    } else if (selectedColor == VIOLET) {
-        color = Color(148 / 255.0, 0 / 255.0, 211 / 255.0);
+        color = Color(255/255.0, 0/255.0, 0/255.0);
     }
-
+    else if (selectedColor == ORANGE) {
+        color = Color(255/255.0, 127/255.0, 0/255.0);
+    }
+    else if (selectedColor == YELLOW) {
+        color = Color(255/255.0, 255/255.0, 0/255.0);
+    }
+    else if (selectedColor == GREEN) {
+        color = Color(0/255.0, 255/255.0, 0/255.0);
+    }
+    else if (selectedColor == BLUE) {
+        color = Color(0/255.0, 0/255.0, 255/255.0);
+    }
+    else if (selectedColor == INDIGO) {
+        color = Color(75/255.0, 0/255.0, 130/255.0);
+    }
+    else if (selectedColor == VIOLET) {
+        color = Color(148/255.0, 0/255.0, 211/255.0);
+    }
+    
     return color;
 }
 

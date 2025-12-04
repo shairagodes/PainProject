@@ -19,7 +19,3 @@ float Color::getR() const{
 float Color::getG() const{
     return g;
 }
-
-float Color::getB() const{
-    return b;
-}
